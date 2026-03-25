@@ -449,7 +449,7 @@ const HomePage = ({ onNav }) => (
     <div style={{ minHeight: '85vh', border: '3px solid var(--ink)', background: 'var(--panel)', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: 20 }}>
       <SpeedLinesRadial opacity={0.1} />
       <SFX text="WHOOSH!" rotation={-15} size={36} color={COLORS.hero} top="8%" right="5%" />
-      <SFX text="CRASH!" rotation={12} size={28} color={COLORS.electric} bottom="15%" left="3%" />
+      <SFX text={`"Nah, I'd win" —Gojo`} rotation={12} size={22} color={COLORS.electric} bottom="15%" left="3%" />
       <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
         <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 14, letterSpacing: 3, textTransform: 'uppercase', color: 'var(--grey)', marginBottom: 8 }}>VOL. 01 — FIRST EDITION</div>
         <h1 style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(52px, 14vw, 100px)', letterSpacing: 6, textTransform: 'uppercase', color: 'var(--ink)', textShadow: `4px 4px 0 ${COLORS.hero}, 8px 8px 0 rgba(0,0,0,0.1)`, lineHeight: 1, margin: 0, transform: 'rotate(-2deg)' }}>MAX</h1>
