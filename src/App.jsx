@@ -25,15 +25,19 @@ const ANIME_CHARACTERS = [
     quote: "Nah, I'd win.",
     color: '#00B4FF', accentBg: 'linear-gradient(135deg, #001428, #003366)',
     emoji: '👁️',
-    stats: { power: 100, speed: 95, technique: 100, intelligence: 90, charisma: 99, endurance: 85 },
-    trait: 'Infinity', bio: 'The strongest sorcerer alive. Teacher at Jujutsu High. Blindfold hides the Six Eyes.',
+    title: 'The Honoured One', charClass: 'Sorcerer', level: 99, rarity: 'Mythic', xp: 99,
+    stats: { HP: 950, ATK: 999, DEF: 800, IQ: 920, SPD: 960, LCK: 850 },
+    abilities: [{ icon: '♾️', name: 'Infinity' }, { icon: '💜', name: 'Hollow Purple' }, { icon: '🔵', name: 'Blue' }, { icon: '🔴', name: 'Red' }],
+    trait: 'Six Eyes', bio: 'The strongest sorcerer alive. Teacher at Jujutsu High. Blindfold hides the Six Eyes.',
   },
   {
     id: 'rengoku', name: 'Rengoku Kyojuro', series: 'Demon Slayer',
     quote: "Set your heart ablaze!",
     color: '#FF6D00', accentBg: 'linear-gradient(135deg, #2A0800, #661A00)',
     emoji: '🔥',
-    stats: { power: 92, speed: 88, technique: 95, intelligence: 85, charisma: 98, endurance: 90 },
+    title: 'The Flame Hashira', charClass: 'Paladin', level: 85, rarity: 'Legendary', xp: 90,
+    stats: { HP: 880, ATK: 920, DEF: 750, IQ: 810, SPD: 870, LCK: 780 },
+    abilities: [{ icon: '🔥', name: 'Flame Breathing' }, { icon: '🌅', name: 'Rengoku' }, { icon: '🦁', name: 'Flame Tiger' }],
     trait: 'Flame Breathing', bio: 'The Flame Hashira. A warrior of unshakeable spirit who lights the way for others.',
   },
   {
@@ -41,7 +45,9 @@ const ANIME_CHARACTERS = [
     quote: "I'm gonna be King of the Pirates!",
     color: '#FF3B5C', accentBg: 'linear-gradient(135deg, #1A0008, #4D0018)',
     emoji: '🏴‍☠️',
-    stats: { power: 96, speed: 90, technique: 70, intelligence: 55, charisma: 100, endurance: 100 },
+    title: 'Straw Hat Captain', charClass: 'Berserker', level: 90, rarity: 'Mythic', xp: 75,
+    stats: { HP: 999, ATK: 950, DEF: 600, IQ: 420, SPD: 880, LCK: 999 },
+    abilities: [{ icon: '🥊', name: 'Gear 5' }, { icon: '👊', name: 'Gum-Gum Pistol' }, { icon: '⚡', name: 'Snakeman' }, { icon: '☀️', name: 'Sun God Nika' }],
     trait: 'Gum-Gum Fruit', bio: 'Captain of the Straw Hats. Stretchy, fearless, and will befriend anyone — even his enemies.',
   },
   {
@@ -49,7 +55,9 @@ const ANIME_CHARACTERS = [
     quote: "I never go back on my word. That's my ninja way!",
     color: '#FFB800', accentBg: 'linear-gradient(135deg, #1A1200, #4D3600)',
     emoji: '🍥',
-    stats: { power: 98, speed: 92, technique: 80, intelligence: 65, charisma: 95, endurance: 100 },
+    title: 'The Seventh Hokage', charClass: 'Monk', level: 95, rarity: 'Mythic', xp: 100,
+    stats: { HP: 999, ATK: 960, DEF: 700, IQ: 550, SPD: 900, LCK: 880 },
+    abilities: [{ icon: '🌀', name: 'Rasengan' }, { icon: '🦊', name: 'Kurama Mode' }, { icon: '✨', name: 'Shadow Clones' }, { icon: '🔮', name: 'Sage Mode' }],
     trait: 'Nine-Tails Jinchuuriki', bio: 'From outcast to Hokage. The kid who never gave up, no matter what.',
   },
   {
@@ -57,7 +65,9 @@ const ANIME_CHARACTERS = [
     quote: "I can't just stand by and watch someone die!",
     color: '#00E676', accentBg: 'linear-gradient(135deg, #001A0B, #004D22)',
     emoji: '💚',
-    stats: { power: 88, speed: 85, technique: 82, intelligence: 95, charisma: 80, endurance: 92 },
+    title: 'The Successor', charClass: 'Warrior', level: 70, rarity: 'Epic', xp: 65,
+    stats: { HP: 820, ATK: 870, DEF: 680, IQ: 920, SPD: 840, LCK: 710 },
+    abilities: [{ icon: '💪', name: 'One For All' }, { icon: '⚡', name: 'Full Cowling' }, { icon: '🌊', name: 'Shoot Style' }, { icon: '🖤', name: 'Black Whip' }],
     trait: 'One For All', bio: 'Born quirkless, now inheritor of the greatest power. A hero who saves with tears in his eyes.',
   },
   {
@@ -65,15 +75,19 @@ const ANIME_CHARACTERS = [
     quote: "No matter how many people you may lose, you have no choice but to go on living.",
     color: '#7C4DFF', accentBg: 'linear-gradient(135deg, #0D0024, #27006B)',
     emoji: '🌊',
-    stats: { power: 85, speed: 84, technique: 90, intelligence: 80, charisma: 92, endurance: 95 },
-    trait: 'Water Breathing / Sun Breathing', bio: 'The boy with the hanafuda earrings. Kind heart, iron will, unbreakable bond with his sister.',
+    title: 'The Gentle Blade', charClass: 'Paladin', level: 75, rarity: 'Legendary', xp: 80,
+    stats: { HP: 850, ATK: 830, DEF: 720, IQ: 780, SPD: 810, LCK: 860 },
+    abilities: [{ icon: '🌊', name: 'Water Breathing' }, { icon: '☀️', name: 'Sun Breathing' }, { icon: '👃', name: 'Enhanced Smell' }],
+    trait: 'Sun Breathing', bio: 'The boy with the hanafuda earrings. Kind heart, iron will, unbreakable bond with his sister.',
   },
   {
     id: 'gon', name: 'Gon Freecss', series: 'Hunter x Hunter',
     quote: "I can't stand being on the sidelines!",
     color: '#00E676', accentBg: 'linear-gradient(135deg, #001A0B, #004D22)',
     emoji: '🎣',
-    stats: { power: 82, speed: 88, technique: 75, intelligence: 60, charisma: 90, endurance: 88 },
+    title: 'The Wild Card', charClass: 'Ranger', level: 55, rarity: 'Epic', xp: 50,
+    stats: { HP: 780, ATK: 810, DEF: 550, IQ: 480, SPD: 850, LCK: 820 },
+    abilities: [{ icon: '✊', name: 'Jajanken Rock' }, { icon: '✂️', name: 'Jajanken Scissors' }, { icon: '✋', name: 'Jajanken Paper' }],
     trait: 'Enhancer Nen', bio: 'A boy searching for his father. Pure instinct, wild spirit, and a terrifying hidden potential.',
   },
   {
@@ -81,7 +95,9 @@ const ANIME_CHARACTERS = [
     quote: "Waku waku!",
     color: '#FF80AB', accentBg: 'linear-gradient(135deg, #1A000E, #4D002A)',
     emoji: '🥜',
-    stats: { power: 10, speed: 30, technique: 15, intelligence: 40, charisma: 100, endurance: 25 },
+    title: 'The Mind Reader', charClass: 'Mage', level: 8, rarity: 'Legendary', xp: 30,
+    stats: { HP: 120, ATK: 50, DEF: 80, IQ: 400, SPD: 200, LCK: 999 },
+    abilities: [{ icon: '🧠', name: 'Telepathy' }, { icon: '🥜', name: 'Peanut Power' }, { icon: '😭', name: 'Crocodile Tears' }],
     trait: 'Telepathy', bio: 'She can read minds. She loves peanuts. She is the glue holding the Forger family together.',
   },
 ];
@@ -688,57 +704,210 @@ const ContactPage = () => {
 };
 
 /* ═══════════════════════════════════════
-   CHARACTER PROFILE MODAL — RPG STAT CARD
+   CHARACTER PROFILE CARD — FULL RPG SYSTEM
+   (from character-profile-card.jsx)
    ═══════════════════════════════════════ */
+const STAT_COLORS = {
+  HP: { bar: "#e63946", glow: "rgba(230,57,70,0.5)", icon: "❤️" },
+  ATK: { bar: "#f77f00", glow: "rgba(247,127,0,0.5)", icon: "⚔️" },
+  DEF: { bar: "#2a9d8f", glow: "rgba(42,157,143,0.5)", icon: "🛡️" },
+  IQ: { bar: "#7b2cbf", glow: "rgba(123,44,191,0.5)", icon: "🧠" },
+  SPD: { bar: "#00b4d8", glow: "rgba(0,180,216,0.5)", icon: "⚡" },
+  LCK: { bar: "#f4a261", glow: "rgba(244,162,97,0.5)", icon: "🍀" },
+};
+const ABILITY_ICONS = ["🔥", "❄️", "⚡", "💀", "🌊", "🌪️", "💎", "🗡️", "🏹", "✨", "🌑", "☀️", "🐉", "👁️", "🦅"];
+const CLASSES = ["Warrior", "Mage", "Rogue", "Paladin", "Ranger", "Necromancer", "Berserker", "Monk", "Sorcerer", "Assassin"];
+const RARITIES = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic"];
+const RARITY_COLORS = { Common: "#9ca3af", Uncommon: "#22c55e", Rare: "#3b82f6", Epic: "#a855f7", Legendary: "#f59e0b", Mythic: "#ef4444" };
+
+function GlowBar({ value, max, color, glow, onChange, editable }) {
+  const pct = Math.min((value / max) * 100, 100);
+  return (
+    <div style={{ position: "relative", width: "100%", height: 22, background: "rgba(255,255,255,0.04)", borderRadius: 6, overflow: "hidden", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ width: `${pct}%`, height: "100%", background: `linear-gradient(90deg, ${color}, ${color}cc)`, borderRadius: 6, transition: "width 0.5s cubic-bezier(.4,0,.2,1)", boxShadow: `0 0 12px ${glow}, inset 0 1px 0 rgba(255,255,255,0.15)` }} />
+      {editable && <input type="range" min={0} max={max} value={value} onChange={e => onChange(+e.target.value)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }} />}
+      <span style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", fontSize: 11, fontWeight: 700, color: "#fff", textShadow: `0 0 6px ${glow}`, fontFamily: "'JetBrains Mono', monospace", letterSpacing: 1, pointerEvents: "none" }}>{value}/{max}</span>
+    </div>
+  );
+}
+
+function AbilityChip({ ability, onRemove, onEdit, editable }) {
+  const [hover, setHover] = useState(false);
+  return (
+    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 10px", background: hover ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, fontSize: 12, color: "#e0e0e0", cursor: "default", transition: "all 0.2s", fontFamily: "'JetBrains Mono', monospace" }}>
+      <span>{ability.icon}</span>
+      <span contentEditable={editable} suppressContentEditableWarning onBlur={e => editable && onEdit(e.target.innerText)} style={{ outline: "none", minWidth: 30 }}>{ability.name}</span>
+      {editable && <span onClick={onRemove} style={{ cursor: "pointer", opacity: hover ? 0.9 : 0.3, transition: "opacity 0.2s", fontSize: 10, color: "#e63946", marginLeft: 2 }}>✕</span>}
+    </div>
+  );
+}
+
 const CharacterProfileModal = ({ character, onClose }) => {
   if (!character) return null;
-  const statEntries = Object.entries(character.stats);
-  const maxStat = Math.max(...Object.values(character.stats));
+  const [editMode, setEditMode] = useState(false);
+  const [stats, setStats] = useState(character.stats);
+  const [abilities, setAbilities] = useState(character.abilities);
+  const [level, setLevel] = useState(character.level);
+  const [xp, setXp] = useState(character.xp);
+  const [rarity, setRarity] = useState(character.rarity);
+  const [charClass, setCharClass] = useState(character.charClass);
+  const [bio, setBio] = useState(character.bio);
+  const [newAbility, setNewAbility] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState("🔥");
+  const [showIconPicker, setShowIconPicker] = useState(false);
+  const [avatarHue, setAvatarHue] = useState(200);
+  const [pulse, setPulse] = useState(false);
+
+  const rarityColor = RARITY_COLORS[rarity] || "#9ca3af";
+  const totalPower = Object.values(stats).reduce((a, b) => a + b, 0);
+
+  useEffect(() => { setPulse(true); const t = setTimeout(() => setPulse(false), 600); return () => clearTimeout(t); }, [stats, level]);
+
+  const updateStat = (key, val) => setStats(prev => ({ ...prev, [key]: val }));
+  const addAbility = () => { if (newAbility.trim()) { setAbilities(prev => [...prev, { icon: selectedIcon, name: newAbility.trim() }]); setNewAbility(""); } };
+
+  const classEmoji = charClass === "Warrior" ? "⚔️" : charClass === "Mage" ? "🔮" : charClass === "Rogue" ? "🗡️" : charClass === "Paladin" ? "🛡️" : charClass === "Ranger" ? "🏹" : charClass === "Necromancer" ? "💀" : charClass === "Berserker" ? "🪓" : charClass === "Monk" ? "👊" : charClass === "Sorcerer" ? "✨" : "🥷";
+
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 9998, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)', cursor: 'pointer', animation: 'fade-in 0.3s ease-out', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#111', border: `3px solid ${character.color}`, borderRadius: 4, maxWidth: 440, width: '100%', overflow: 'hidden', cursor: 'default', animation: 'profile-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards', boxShadow: `0 0 60px ${character.color}33, 0 20px 60px rgba(0,0,0,0.5)` }}>
-        {/* Header */}
-        <div style={{ background: character.accentBg, padding: '24px 20px 16px', position: 'relative', overflow: 'hidden' }}>
-          <SpeedLinesRadial opacity={0.08} />
-          <div style={{ position: 'absolute', top: 8, right: 12, fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.4)', letterSpacing: 2 }}>HERO FILE</div>
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: 56, marginBottom: 4 }}>{character.emoji}</div>
-            <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(28px, 7vw, 40px)', color: 'white', letterSpacing: 3, textTransform: 'uppercase', textShadow: `2px 2px 0 ${character.color}`, lineHeight: 1.1 }}>{character.name}</div>
-            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 12, color: character.color, marginTop: 6, letterSpacing: 2 }}>{character.series.toUpperCase()}</div>
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 9998, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', cursor: 'pointer', animation: 'fade-in 0.3s ease-out', padding: 16, overflowY: 'auto' }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Crimson+Pro:wght@400;500;600&display=swap');
+        @keyframes cardFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+        .rpg-edit-input { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:6px; color:#fff; padding:4px 8px; font-size:13px; outline:none; transition:border 0.2s; }
+        .rpg-edit-input:focus { border-color:${rarityColor}88; box-shadow:0 0 8px ${rarityColor}33; }
+        .rpg-edit-btn { background:none; border:1px solid rgba(255,255,255,0.1); color:#aaa; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:12px; transition:all 0.2s; font-family:'JetBrains Mono',monospace; }
+        .rpg-edit-btn:hover { border-color:${rarityColor}; color:${rarityColor}; background:${rarityColor}11; }
+        .rpg-chip-select { appearance:none; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:4px 8px; border-radius:6px; font-size:12px; cursor:pointer; outline:none; font-family:'JetBrains Mono',monospace; }
+        .rpg-chip-select option { background:#1a1a2e; color:#fff; }
+      `}</style>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: 420, maxWidth: '100%', borderRadius: 20, overflow: 'hidden', position: 'relative', cursor: 'default',
+        animation: 'profile-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, cardFloat 6s ease-in-out infinite',
+        background: 'linear-gradient(170deg, #161627 0%, #0d0d1a 40%, #0a0a14 100%)',
+        border: `2px solid ${rarityColor}44`,
+        boxShadow: pulse ? `0 0 60px ${rarityColor}44, 0 20px 60px rgba(0,0,0,0.8)` : `0 0 30px ${rarityColor}22, 0 20px 60px rgba(0,0,0,0.8)`,
+        transition: 'box-shadow 0.5s', maxHeight: '90vh', overflowY: 'auto',
+      }}>
+        {/* Rarity shimmer bar */}
+        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}, transparent)`, backgroundSize: '200% 100%', animation: 'shimmer 3s linear infinite' }} />
+
+        {/* Top controls */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px 0' }}>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <span style={{ fontSize: 10, color: rarityColor, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>{rarity}</span>
+            {editMode && <select className="rpg-chip-select" value={rarity} onChange={e => setRarity(e.target.value)} style={{ fontSize: 10 }}>{RARITIES.map(r => <option key={r}>{r}</option>)}</select>}
+          </div>
+          <button className="rpg-edit-btn" onClick={() => setEditMode(!editMode)} style={{ fontSize: 11, padding: '4px 12px', borderColor: editMode ? rarityColor : undefined, color: editMode ? rarityColor : undefined }}>
+            {editMode ? '✓ Done' : '✎ Edit'}
+          </button>
+        </div>
+
+        {/* Avatar & Identity */}
+        <div style={{ padding: '16px 18px 0', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+          <div style={{ position: 'relative', flexShrink: 0 }}>
+            <div style={{ width: 80, height: 80, borderRadius: 14, overflow: 'hidden', background: character.accentBg, border: `2px solid ${rarityColor}66`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, boxShadow: `0 0 20px ${rarityColor}22` }}>
+              {character.emoji}
+            </div>
+            <div style={{ position: 'absolute', bottom: -4, right: -4, background: '#1a1a2e', border: `2px solid ${rarityColor}`, borderRadius: 8, padding: '1px 6px', fontSize: 11, fontWeight: 700, color: rarityColor, fontFamily: "'JetBrains Mono',monospace" }}>Lv.{level}</div>
+            {editMode && <input type="range" min={0} max={360} value={avatarHue} onChange={e => setAvatarHue(+e.target.value)} style={{ width: 80, marginTop: 6, accentColor: rarityColor }} />}
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontFamily: "'Cinzel',serif", fontSize: 22, fontWeight: 900, color: '#f0ece2', letterSpacing: 1, lineHeight: 1.1, textShadow: `0 0 20px ${rarityColor}33` }}>{character.name}</div>
+            <div style={{ fontSize: 12, color: '#888', fontStyle: 'italic', fontFamily: "'Crimson Pro',serif", marginTop: 2 }}>"{character.title}"</div>
+            <div style={{ display: 'flex', gap: 6, marginTop: 6, alignItems: 'center' }}>
+              {editMode ? <select className="rpg-chip-select" value={charClass} onChange={e => setCharClass(e.target.value)}>{CLASSES.map(c => <option key={c}>{c}</option>)}</select> : (
+                <span style={{ fontSize: 11, color: rarityColor, fontFamily: "'JetBrains Mono',monospace", background: `${rarityColor}15`, padding: '2px 8px', borderRadius: 6, border: `1px solid ${rarityColor}33` }}>{charClass}</span>
+              )}
+              {editMode && <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ fontSize: 10, color: '#666' }}>Lv:</span><input type="number" className="rpg-edit-input" value={level} min={1} max={100} onChange={e => setLevel(Math.max(1, Math.min(100, +e.target.value)))} style={{ width: 50, fontSize: 12, textAlign: 'center' }} /></div>}
+            </div>
+            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 12, color: character.color, marginTop: 6, letterSpacing: 1 }}>{character.series}</div>
           </div>
         </div>
+
+        {/* XP Bar */}
+        <div style={{ padding: '12px 18px 0' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+            <span style={{ fontSize: 10, color: '#666', fontFamily: "'JetBrains Mono',monospace" }}>EXPERIENCE</span>
+            <span style={{ fontSize: 10, color: rarityColor, fontFamily: "'JetBrains Mono',monospace" }}>{xp}%</span>
+          </div>
+          <div style={{ height: 6, background: 'rgba(255,255,255,0.04)', borderRadius: 3, overflow: 'hidden', position: 'relative' }}>
+            <div style={{ width: `${xp}%`, height: '100%', borderRadius: 3, transition: 'width 0.5s', background: `linear-gradient(90deg, ${rarityColor}88, ${rarityColor})`, boxShadow: `0 0 8px ${rarityColor}44` }} />
+            {editMode && <input type="range" min={0} max={100} value={xp} onChange={e => setXp(+e.target.value)} style={{ position: 'absolute', inset: 0, width: '100%', opacity: 0, cursor: 'pointer' }} />}
+          </div>
+        </div>
+
         {/* Quote */}
-        <div style={{ padding: '14px 20px', borderBottom: `2px solid ${character.color}22`, background: '#0a0a0a' }}>
-          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 14, fontStyle: 'italic', color: character.color, lineHeight: 1.6, textAlign: 'center' }}>"{character.quote}"</div>
+        <div style={{ margin: '12px 18px 0', padding: '10px 14px', background: 'rgba(255,255,255,0.02)', border: `1px solid ${character.color}22`, borderRadius: 8, textAlign: 'center' }}>
+          <div style={{ fontFamily: "'Crimson Pro',serif", fontSize: 14, fontStyle: 'italic', color: character.color, lineHeight: 1.6 }}>"{character.quote}"</div>
         </div>
-        {/* Trait */}
-        <div style={{ padding: '10px 20px', borderBottom: '1px solid #222', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontFamily: "'Bangers', cursive", fontSize: 12, letterSpacing: 2, color: '#666', textTransform: 'uppercase' }}>SPECIAL TRAIT</span>
-          <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, color: character.color }}>{character.trait}</span>
+
+        <div style={{ margin: '14px 18px 0', height: 1, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+
+        {/* Power Rating */}
+        <div style={{ padding: '10px 18px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 10, color: '#555', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 2 }}>POWER RATING</span>
+          <span style={{ fontSize: 18, fontWeight: 900, fontFamily: "'Cinzel',serif", background: `linear-gradient(135deg, ${rarityColor}, #fff)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{totalPower.toLocaleString()}</span>
         </div>
+
         {/* Stats */}
-        <div style={{ padding: '16px 20px' }}>
-          <div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#666', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>POWER STATS</div>
-          {statEntries.map(([key, val], i) => (
-            <div key={key} style={{ marginBottom: 8 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 12, color: '#aaa', textTransform: 'uppercase', letterSpacing: 1 }}>{key}</span>
-                <span style={{ fontFamily: "'Bangers', cursive", fontSize: 16, color: val === maxStat ? character.color : '#ccc' }}>{val}</span>
+        <div style={{ padding: '10px 18px 0' }}>
+          <div style={{ fontSize: 10, color: '#555', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 2, marginBottom: 8 }}>COMBAT STATS</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {Object.entries(STAT_COLORS).map(([key, c]) => (
+              <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 14, width: 22, textAlign: 'center' }}>{c.icon}</span>
+                <span style={{ width: 30, fontSize: 11, color: c.bar, fontFamily: "'JetBrains Mono',monospace", fontWeight: 700 }}>{key}</span>
+                <div style={{ flex: 1 }}>
+                  <GlowBar value={stats[key]} max={999} color={c.bar} glow={c.glow} editable={editMode} onChange={v => updateStat(key, v)} />
+                </div>
               </div>
-              <div style={{ height: 8, background: '#222', border: '1px solid #333', borderRadius: 1, overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${val}%`, background: `linear-gradient(90deg, ${character.color}88, ${character.color})`, transition: `width 0.6s cubic-bezier(0.4,0,0.2,1) ${i * 80}ms`, borderRadius: 1 }} />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <div style={{ margin: '14px 18px 0', height: 1, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+
         {/* Bio */}
-        <div style={{ padding: '12px 20px 20px', borderTop: '1px solid #222' }}>
-          <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 13, color: '#888', lineHeight: 1.7 }}>{character.bio}</div>
+        <div style={{ padding: '10px 18px 0' }}>
+          <div style={{ fontSize: 10, color: '#555', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 2, marginBottom: 6 }}>LORE</div>
+          {editMode ? <textarea className="rpg-edit-input" value={bio} onChange={e => setBio(e.target.value)} rows={2} style={{ width: '100%', fontSize: 12, resize: 'vertical', fontFamily: "'Crimson Pro',serif", lineHeight: 1.5 }} /> : (
+            <p style={{ fontSize: 13, color: '#999', lineHeight: 1.5, margin: 0, fontFamily: "'Crimson Pro',serif" }}>{bio}</p>
+          )}
         </div>
-        {/* Close hint */}
-        <div style={{ padding: '8px 20px 14px', textAlign: 'center' }}>
-          <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: '#444', letterSpacing: 1 }}>TAP OUTSIDE TO CLOSE</span>
+
+        <div style={{ margin: '12px 18px 0', height: 1, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
+
+        {/* Abilities */}
+        <div style={{ padding: '10px 18px 16px' }}>
+          <div style={{ fontSize: 10, color: '#555', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 2, marginBottom: 8 }}>ABILITIES <span style={{ color: '#444' }}>({abilities.length})</span></div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {abilities.map((ab, i) => (
+              <AbilityChip key={i} ability={ab} editable={editMode}
+                onRemove={() => setAbilities(prev => prev.filter((_, j) => j !== i))}
+                onEdit={text => setAbilities(prev => prev.map((a, j) => j === i ? { ...a, name: text } : a))} />
+            ))}
+          </div>
+          {editMode && (
+            <div style={{ display: 'flex', gap: 6, marginTop: 10, alignItems: 'center' }}>
+              <div style={{ position: 'relative' }}>
+                <button onClick={() => setShowIconPicker(!showIconPicker)} style={{ width: 32, height: 32, borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.04)', fontSize: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{selectedIcon}</button>
+                {showIconPicker && (
+                  <div style={{ position: 'absolute', bottom: 38, left: 0, background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: 8, display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 4, zIndex: 10, boxShadow: '0 8px 30px rgba(0,0,0,0.6)' }}>
+                    {ABILITY_ICONS.map(ic => (
+                      <button key={ic} onClick={() => { setSelectedIcon(ic); setShowIconPicker(false); }} style={{ width: 30, height: 30, border: ic === selectedIcon ? `1px solid ${rarityColor}` : '1px solid transparent', background: ic === selectedIcon ? `${rarityColor}22` : 'transparent', borderRadius: 6, fontSize: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{ic}</button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <input className="rpg-edit-input" placeholder="Ability name..." value={newAbility} onChange={e => setNewAbility(e.target.value)} onKeyDown={e => e.key === 'Enter' && addAbility()} style={{ flex: 1, fontSize: 12, fontFamily: "'JetBrains Mono',monospace" }} />
+              <button className="rpg-edit-btn" onClick={addAbility} style={{ borderColor: `${rarityColor}66`, color: rarityColor, padding: '4px 12px' }}>+ Add</button>
+            </div>
+          )}
         </div>
+
+        {/* Bottom rarity stripe */}
+        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}, transparent)`, backgroundSize: '200% 100%', animation: 'shimmer 3s linear infinite' }} />
       </div>
     </div>
   );
