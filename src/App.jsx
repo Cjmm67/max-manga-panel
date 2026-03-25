@@ -13,9 +13,77 @@ const POP_COLORS = Object.values(COLORS);
 const CHAPTERS = [
   { id: 'home', label: 'HOME', title: 'Title Page', color: COLORS.hero, num: '00' },
   { id: 'about', label: 'ABOUT', title: 'Origin Story', color: COLORS.electric, num: '01' },
-  { id: 'projects', label: 'ARCS', title: 'Story Arcs', color: COLORS.gold, num: '02' },
-  { id: 'blog', label: 'BLOG', title: 'Chapters', color: COLORS.purple, num: '03' },
-  { id: 'contact', label: 'MSG', title: 'Transmission', color: COLORS.orange, num: '04' },
+  { id: 'quotes', label: 'QUOTES', title: 'Wall of Legends', color: COLORS.energy, num: '02' },
+  { id: 'projects', label: 'ARCS', title: 'Story Arcs', color: COLORS.gold, num: '03' },
+  { id: 'blog', label: 'BLOG', title: 'Chapters', color: COLORS.purple, num: '04' },
+  { id: 'contact', label: 'MSG', title: 'Transmission', color: COLORS.orange, num: '05' },
+];
+
+const ANIME_CHARACTERS = [
+  {
+    id: 'gojo', name: 'Gojo Satoru', series: 'Jujutsu Kaisen',
+    quote: "Nah, I'd win.",
+    color: '#00B4FF', accentBg: 'linear-gradient(135deg, #001428, #003366)',
+    emoji: '👁️',
+    stats: { power: 100, speed: 95, technique: 100, intelligence: 90, charisma: 99, endurance: 85 },
+    trait: 'Infinity', bio: 'The strongest sorcerer alive. Teacher at Jujutsu High. Blindfold hides the Six Eyes.',
+  },
+  {
+    id: 'rengoku', name: 'Rengoku Kyojuro', series: 'Demon Slayer',
+    quote: "Set your heart ablaze!",
+    color: '#FF6D00', accentBg: 'linear-gradient(135deg, #2A0800, #661A00)',
+    emoji: '🔥',
+    stats: { power: 92, speed: 88, technique: 95, intelligence: 85, charisma: 98, endurance: 90 },
+    trait: 'Flame Breathing', bio: 'The Flame Hashira. A warrior of unshakeable spirit who lights the way for others.',
+  },
+  {
+    id: 'luffy', name: 'Monkey D. Luffy', series: 'One Piece',
+    quote: "I'm gonna be King of the Pirates!",
+    color: '#FF3B5C', accentBg: 'linear-gradient(135deg, #1A0008, #4D0018)',
+    emoji: '🏴‍☠️',
+    stats: { power: 96, speed: 90, technique: 70, intelligence: 55, charisma: 100, endurance: 100 },
+    trait: 'Gum-Gum Fruit', bio: 'Captain of the Straw Hats. Stretchy, fearless, and will befriend anyone — even his enemies.',
+  },
+  {
+    id: 'naruto', name: 'Naruto Uzumaki', series: 'Naruto',
+    quote: "I never go back on my word. That's my ninja way!",
+    color: '#FFB800', accentBg: 'linear-gradient(135deg, #1A1200, #4D3600)',
+    emoji: '🍥',
+    stats: { power: 98, speed: 92, technique: 80, intelligence: 65, charisma: 95, endurance: 100 },
+    trait: 'Nine-Tails Jinchuuriki', bio: 'From outcast to Hokage. The kid who never gave up, no matter what.',
+  },
+  {
+    id: 'deku', name: 'Izuku Midoriya', series: 'My Hero Academia',
+    quote: "I can't just stand by and watch someone die!",
+    color: '#00E676', accentBg: 'linear-gradient(135deg, #001A0B, #004D22)',
+    emoji: '💚',
+    stats: { power: 88, speed: 85, technique: 82, intelligence: 95, charisma: 80, endurance: 92 },
+    trait: 'One For All', bio: 'Born quirkless, now inheritor of the greatest power. A hero who saves with tears in his eyes.',
+  },
+  {
+    id: 'tanjiro', name: 'Tanjiro Kamado', series: 'Demon Slayer',
+    quote: "No matter how many people you may lose, you have no choice but to go on living.",
+    color: '#7C4DFF', accentBg: 'linear-gradient(135deg, #0D0024, #27006B)',
+    emoji: '🌊',
+    stats: { power: 85, speed: 84, technique: 90, intelligence: 80, charisma: 92, endurance: 95 },
+    trait: 'Water Breathing / Sun Breathing', bio: 'The boy with the hanafuda earrings. Kind heart, iron will, unbreakable bond with his sister.',
+  },
+  {
+    id: 'gon', name: 'Gon Freecss', series: 'Hunter x Hunter',
+    quote: "I can't stand being on the sidelines!",
+    color: '#00E676', accentBg: 'linear-gradient(135deg, #001A0B, #004D22)',
+    emoji: '🎣',
+    stats: { power: 82, speed: 88, technique: 75, intelligence: 60, charisma: 90, endurance: 88 },
+    trait: 'Enhancer Nen', bio: 'A boy searching for his father. Pure instinct, wild spirit, and a terrifying hidden potential.',
+  },
+  {
+    id: 'anya', name: 'Anya Forger', series: 'Spy x Family',
+    quote: "Waku waku!",
+    color: '#FF80AB', accentBg: 'linear-gradient(135deg, #1A000E, #4D002A)',
+    emoji: '🥜',
+    stats: { power: 10, speed: 30, technique: 15, intelligence: 40, charisma: 100, endurance: 25 },
+    trait: 'Telepathy', bio: 'She can read minds. She loves peanuts. She is the glue holding the Forger family together.',
+  },
 ];
 
 const STATS = [
@@ -475,7 +543,7 @@ const HomePage = ({ onNav }) => (
             <div style={{ width: 60, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '2px solid var(--ink)', fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 2, color: '#999', flexShrink: 0 }}>CH.{String(i + 1).padStart(2, '0')}</div>
             <div style={{ padding: '16px 20px', flex: 1 }}>
               <div style={{ fontFamily: "'Bangers', cursive", fontSize: 22, letterSpacing: 1, textTransform: 'uppercase', color: 'var(--ink)' }}>{ch.title}</div>
-              <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 14, color: 'var(--grey)', lineHeight: 1.5, marginTop: 2 }}>{ch.id === 'about' ? 'The hero reveals his true power...' : ch.id === 'projects' ? 'Epic quests and legendary builds...' : ch.id === 'blog' ? 'Tales from the battlefield...' : 'Send a message to HQ!'}</div>
+              <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 14, color: 'var(--grey)', lineHeight: 1.5, marginTop: 2 }}>{ch.id === 'about' ? 'The hero reveals his true power...' : ch.id === 'quotes' ? 'Words of wisdom from the greatest heroes...' : ch.id === 'projects' ? 'Epic quests and legendary builds...' : ch.id === 'blog' ? 'Tales from the battlefield...' : 'Send a message to HQ!'}</div>
             </div>
             <div style={{ width: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Bangers', cursive", fontSize: 24, color: '#ccc', flexShrink: 0 }}>&#8594;</div>
           </div>
@@ -522,13 +590,13 @@ const AboutPage = ({ onNav }) => (
       ))}
     </div>
     <ScrollReveal direction="scale"><div style={{ border: '3px solid var(--panel)', background: 'var(--dark)', padding: '60px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden', marginBottom: 12 }}><SpeedLinesRadial opacity={0.1} /><div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(24px, 5vw, 42px)', color: 'var(--panel)', letterSpacing: 3, textTransform: 'uppercase', lineHeight: 1.3, position: 'relative', zIndex: 1 }}>EVERY GREAT STORY STARTS WITH SOMEONE WHO <span style={{ color: COLORS.electric }}>REFUSES</span> TO GIVE UP</div></div></ScrollReveal>
-    <ScrollReveal><div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', padding: '40px 24px', textAlign: 'center' }}><div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 12 }}>THIS STORY IS STILL BEING WRITTEN...</div><div onClick={() => onNav('projects')} style={{ fontFamily: "'Bangers', cursive", fontSize: 24, letterSpacing: 2, color: COLORS.gold, cursor: 'pointer', textTransform: 'uppercase' }}>TO BE CONTINUED &#8594; THE STORY ARCS</div></div></ScrollReveal>
+    <ScrollReveal><div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', padding: '40px 24px', textAlign: 'center' }}><div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 12 }}>THIS STORY IS STILL BEING WRITTEN...</div><div onClick={() => onNav('quotes')} style={{ fontFamily: "'Bangers', cursive", fontSize: 24, letterSpacing: 2, color: COLORS.energy, cursor: 'pointer', textTransform: 'uppercase' }}>TO BE CONTINUED &#8594; WALL OF LEGENDS</div></div></ScrollReveal>
   </div>
 );
 
 const ProjectsPage = ({ onNav }) => (
   <div style={{ maxWidth: 900, margin: '0 auto', padding: '12px', background: 'var(--gutter)' }}>
-    <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 02</div></ScrollReveal>
+    <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 03</div></ScrollReveal>
     <ScrollReveal><h2 style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(32px, 8vw, 56px)', letterSpacing: 4, textTransform: 'uppercase', textAlign: 'center', color: 'var(--ink)', textShadow: `3px 3px 0 ${COLORS.gold}`, margin: '0 0 24px' }}>THE STORY ARCS</h2></ScrollReveal>
     {PROJECTS.map((p, i) => (
       <ScrollReveal key={p.num} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 100}>
@@ -551,19 +619,50 @@ const ProjectsPage = ({ onNav }) => (
 
 const BlogPage = ({ onNav }) => (
   <div style={{ maxWidth: 900, margin: '0 auto', padding: '12px', background: 'var(--gutter)' }}>
-    <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 03</div></ScrollReveal>
+    <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 04</div></ScrollReveal>
     <ScrollReveal><h2 style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(32px, 8vw, 56px)', letterSpacing: 4, textTransform: 'uppercase', textAlign: 'center', color: 'var(--ink)', textShadow: `3px 3px 0 ${COLORS.purple}`, margin: '0 0 24px' }}>THE MANGA CHAPTERS</h2></ScrollReveal>
+
     {BLOGS.map((b, i) => (
       <ScrollReveal key={b.num} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 100}>
-        <div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', marginBottom: 16, overflow: 'hidden', padding: '24px 24px 24px 90px', position: 'relative', minHeight: 140 }}>
-          <div style={{ position: 'absolute', left: -5, top: '50%', transform: 'translateY(-50%)', fontFamily: "'Bangers', cursive", fontSize: 80, WebkitTextStroke: '2px var(--ink)', color: 'transparent', opacity: 0.15, letterSpacing: -4, lineHeight: 1 }}>{b.num}</div>
-          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 12, color: '#999', marginBottom: 4 }}>{b.date}</div>
-          <div style={{ fontFamily: "'Bangers', cursive", fontSize: 22, letterSpacing: 1, textTransform: 'uppercase', color: 'var(--ink)', marginBottom: 10 }}>{b.title}</div>
-          <SpeechBubble maxWidth={500} style={{ margin: 0 }}>{b.preview}</SpeechBubble>
-          <div style={{ marginTop: 14 }}><span style={{ fontFamily: "'Bangers', cursive", fontSize: 16, letterSpacing: 2, color: COLORS.purple, cursor: 'pointer', textTransform: 'uppercase' }}>READ CHAPTER &#8594;</span></div>
+        <div style={{ border: '3px solid var(--ink)', marginBottom: 20, overflow: 'hidden', background: 'var(--panel)' }}>
+          {/* Chapter title page header — like a real manga chapter opening */}
+          <div style={{ background: 'var(--dark)', color: 'var(--panel)', padding: '24px 20px', position: 'relative', overflow: 'hidden' }}>
+            <SpeedLinesRadial opacity={0.06} />
+            <div style={{ position: 'absolute', top: -10, right: -10, fontFamily: "'Bangers', cursive", fontSize: 100, color: 'rgba(255,255,255,0.04)', lineHeight: 1, letterSpacing: -4 }}>{b.num}</div>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: COLORS.purple, letterSpacing: 3, textTransform: 'uppercase', marginBottom: 4 }}>{b.date}</div>
+              <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(22px, 5vw, 32px)', letterSpacing: 2, textTransform: 'uppercase', textShadow: `2px 2px 0 ${COLORS.purple}` }}>CH.{b.num}: {b.title}</div>
+            </div>
+            <SFX text={i === 0 ? 'CLICK!' : i === 1 ? 'DRAW!' : 'GASP!'} rotation={i * 5 - 5} size={18} color={COLORS.purple} bottom="8px" right="12px" />
+          </div>
+
+          {/* Manga panel content area */}
+          <div style={{ display: 'grid', gridTemplateColumns: i % 2 === 0 ? '2fr 1fr' : '1fr 2fr', gap: 0, borderTop: '3px solid var(--ink)' }}>
+            {/* Main narrative panel */}
+            <div style={{ padding: '24px 20px', borderRight: i % 2 === 0 ? '3px solid var(--ink)' : 'none', borderLeft: i % 2 !== 0 ? '3px solid var(--ink)' : 'none', order: i % 2 === 0 ? 0 : 1, position: 'relative', backgroundImage: 'repeating-linear-gradient(0deg, transparent 0px, transparent 27px, rgba(0,0,0,0.03) 27px, rgba(0,0,0,0.03) 28px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 140 }}>
+              <NarrationBox pos="static" style={{ maxWidth: '100%', position: 'relative', margin: '0 0 12px' }}>
+                PREVIOUSLY: Our hero faced a challenge that would test everything...
+              </NarrationBox>
+              <SpeechBubble maxWidth={500} style={{ margin: 0 }}>{b.preview}</SpeechBubble>
+            </div>
+            {/* Side action panel */}
+            <div style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)', backgroundSize: '6px 6px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, order: i % 2 === 0 ? 1 : 0, position: 'relative', minHeight: 120 }}>
+              <div style={{ fontSize: 64, opacity: 0.2, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>{i === 0 ? '💻' : i === 1 ? '✏️' : '📶'}</div>
+              <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                <div style={{ fontFamily: "'Bungee Shade', cursive", fontSize: 20, color: COLORS.purple, textShadow: '2px 2px 0 rgba(0,0,0,0.1)', marginBottom: 4 }}>{i === 0 ? 'EUREKA!' : i === 1 ? 'CREATE!' : 'OFFLINE!'}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar — "to be continued" */}
+          <div style={{ borderTop: '3px solid var(--ink)', padding: '10px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--gutter)' }}>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 12, color: 'var(--grey)' }}>TO BE CONTINUED...</span>
+            <span style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 2, color: COLORS.purple, cursor: 'pointer', textTransform: 'uppercase' }}>READ FULL CHAPTER &#8594;</span>
+          </div>
         </div>
       </ScrollReveal>
     ))}
+
     <ScrollReveal><div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', padding: '30px 24px', textAlign: 'center' }}><div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 8 }}>NEW CHAPTERS PUBLISHED WEEKLY...</div><div onClick={() => onNav('contact')} style={{ fontFamily: "'Bangers', cursive", fontSize: 20, letterSpacing: 2, color: COLORS.orange, cursor: 'pointer', textTransform: 'uppercase' }}>NEXT: SEND A TRANSMISSION &#8594;</div></div></ScrollReveal>
   </div>
 );
@@ -587,6 +686,143 @@ const ContactPage = () => {
     </div>
   );
 };
+
+/* ═══════════════════════════════════════
+   CHARACTER PROFILE MODAL — RPG STAT CARD
+   ═══════════════════════════════════════ */
+const CharacterProfileModal = ({ character, onClose }) => {
+  if (!character) return null;
+  const statEntries = Object.entries(character.stats);
+  const maxStat = Math.max(...Object.values(character.stats));
+  return (
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 9998, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)', cursor: 'pointer', animation: 'fade-in 0.3s ease-out', padding: 16 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: '#111', border: `3px solid ${character.color}`, borderRadius: 4, maxWidth: 440, width: '100%', overflow: 'hidden', cursor: 'default', animation: 'profile-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards', boxShadow: `0 0 60px ${character.color}33, 0 20px 60px rgba(0,0,0,0.5)` }}>
+        {/* Header */}
+        <div style={{ background: character.accentBg, padding: '24px 20px 16px', position: 'relative', overflow: 'hidden' }}>
+          <SpeedLinesRadial opacity={0.08} />
+          <div style={{ position: 'absolute', top: 8, right: 12, fontFamily: "'Courier Prime', monospace", fontSize: 10, color: 'rgba(255,255,255,0.4)', letterSpacing: 2 }}>HERO FILE</div>
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div style={{ fontSize: 56, marginBottom: 4 }}>{character.emoji}</div>
+            <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(28px, 7vw, 40px)', color: 'white', letterSpacing: 3, textTransform: 'uppercase', textShadow: `2px 2px 0 ${character.color}`, lineHeight: 1.1 }}>{character.name}</div>
+            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 12, color: character.color, marginTop: 6, letterSpacing: 2 }}>{character.series.toUpperCase()}</div>
+          </div>
+        </div>
+        {/* Quote */}
+        <div style={{ padding: '14px 20px', borderBottom: `2px solid ${character.color}22`, background: '#0a0a0a' }}>
+          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 14, fontStyle: 'italic', color: character.color, lineHeight: 1.6, textAlign: 'center' }}>"{character.quote}"</div>
+        </div>
+        {/* Trait */}
+        <div style={{ padding: '10px 20px', borderBottom: '1px solid #222', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontFamily: "'Bangers', cursive", fontSize: 12, letterSpacing: 2, color: '#666', textTransform: 'uppercase' }}>SPECIAL TRAIT</span>
+          <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 13, color: character.color }}>{character.trait}</span>
+        </div>
+        {/* Stats */}
+        <div style={{ padding: '16px 20px' }}>
+          <div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#666', textTransform: 'uppercase', marginBottom: 12, textAlign: 'center' }}>POWER STATS</div>
+          {statEntries.map(([key, val], i) => (
+            <div key={key} style={{ marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
+                <span style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 12, color: '#aaa', textTransform: 'uppercase', letterSpacing: 1 }}>{key}</span>
+                <span style={{ fontFamily: "'Bangers', cursive", fontSize: 16, color: val === maxStat ? character.color : '#ccc' }}>{val}</span>
+              </div>
+              <div style={{ height: 8, background: '#222', border: '1px solid #333', borderRadius: 1, overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${val}%`, background: `linear-gradient(90deg, ${character.color}88, ${character.color})`, transition: `width 0.6s cubic-bezier(0.4,0,0.2,1) ${i * 80}ms`, borderRadius: 1 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Bio */}
+        <div style={{ padding: '12px 20px 20px', borderTop: '1px solid #222' }}>
+          <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 13, color: '#888', lineHeight: 1.7 }}>{character.bio}</div>
+        </div>
+        {/* Close hint */}
+        <div style={{ padding: '8px 20px 14px', textAlign: 'center' }}>
+          <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: '#444', letterSpacing: 1 }}>TAP OUTSIDE TO CLOSE</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+/* ═══════════════════════════════════════
+   ANIME QUOTES WALL PAGE
+   ═══════════════════════════════════════ */
+const QuotesWallPage = ({ onNav }) => {
+  const [selectedChar, setSelectedChar] = useState(null);
+  return (
+    <div style={{ maxWidth: 900, margin: '0 auto', padding: '12px', background: 'var(--gutter)' }}>
+      <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 02</div></ScrollReveal>
+      <ScrollReveal><h2 style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(32px, 8vw, 56px)', letterSpacing: 4, textTransform: 'uppercase', textAlign: 'center', color: 'var(--ink)', textShadow: `3px 3px 0 ${COLORS.energy}`, margin: '0 0 8px' }}>WALL OF LEGENDS</h2></ScrollReveal>
+      <ScrollReveal><div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', textAlign: 'center', marginBottom: 24 }}>The words that shaped heroes. Click any legend to see their full profile.</div></ScrollReveal>
+
+      {/* Splash intro panel */}
+      <ScrollReveal direction="scale">
+        <div style={{ border: '3px solid var(--ink)', background: 'var(--dark)', color: 'var(--panel)', padding: '40px 24px', textAlign: 'center', marginBottom: 16, position: 'relative', overflow: 'hidden' }}>
+          <SpeedLinesRadial opacity={0.1} />
+          <SFX text="LEGENDS!" rotation={-8} size={24} color={COLORS.energy} top="8px" left="3%" />
+          <SFX text="POWER!" rotation={10} size={20} color={COLORS.gold} bottom="8px" right="5%" />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(20px, 5vw, 32px)', letterSpacing: 3, textTransform: 'uppercase', color: COLORS.energy }}>EVERY HERO HAS A BATTLE CRY</div>
+            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 13, color: '#999', marginTop: 8 }}>These are the quotes Max lives by.</div>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      {/* Character quote cards grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
+        {ANIME_CHARACTERS.map((ch, i) => (
+          <ScrollReveal key={ch.id} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 80}>
+            <div
+              onClick={() => setSelectedChar(ch)}
+              style={{
+                border: '3px solid var(--ink)', background: 'var(--panel)', position: 'relative', overflow: 'hidden', cursor: 'pointer',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                minHeight: 180, display: 'flex', flexDirection: 'column',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)'; e.currentTarget.style.boxShadow = `0 8px 24px ${ch.color}33`; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              {/* Color bar top */}
+              <div style={{ height: 5, background: ch.color }} />
+              {/* Emoji + name header */}
+              <div style={{ padding: '16px 16px 8px', display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ fontSize: 36, flexShrink: 0 }}>{ch.emoji}</div>
+                <div>
+                  <div style={{ fontFamily: "'Bangers', cursive", fontSize: 18, letterSpacing: 1, color: 'var(--ink)', textTransform: 'uppercase', lineHeight: 1.1 }}>{ch.name}</div>
+                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color: ch.color, letterSpacing: 1, marginTop: 2 }}>{ch.series.toUpperCase()}</div>
+                </div>
+              </div>
+              {/* Quote bubble */}
+              <div style={{ padding: '4px 16px 16px', flex: 1, display: 'flex', alignItems: 'center' }}>
+                <div style={{ background: '#FFFDE7', border: '2px solid var(--ink)', borderRadius: 16, padding: '10px 14px', fontFamily: "'Nunito', sans-serif", fontWeight: 600, fontSize: 14, lineHeight: 1.5, color: '#111', position: 'relative', width: '100%' }}>
+                  "{ch.quote}"
+                  <div style={{ position: 'absolute', top: -8, left: 20, width: 0, height: 0, borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderBottom: '8px solid var(--ink)' }} />
+                  <div style={{ position: 'absolute', top: -5, left: 22, width: 0, height: 0, borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid #FFFDE7' }} />
+                </div>
+              </div>
+              {/* Click hint */}
+              <div style={{ padding: '6px 16px 10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Stamp text={ch.trait.split(' ')[0]} color={ch.color} rotation={-3} />
+                <span style={{ fontFamily: "'Bangers', cursive", fontSize: 12, color: ch.color, letterSpacing: 2, textTransform: 'uppercase' }}>VIEW STATS &#8594;</span>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+
+      {/* Bottom CTA */}
+      <ScrollReveal><div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', padding: '30px 24px', textAlign: 'center' }}>
+        <div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 8 }}>MORE LEGENDS COMING SOON...</div>
+        <div onClick={() => onNav('projects')} style={{ fontFamily: "'Bangers', cursive", fontSize: 20, letterSpacing: 2, color: COLORS.gold, cursor: 'pointer', textTransform: 'uppercase' }}>NEXT: THE STORY ARCS &#8594;</div>
+      </div></ScrollReveal>
+
+      {/* Character profile modal */}
+      {selectedChar && <CharacterProfileModal character={selectedChar} onClose={() => setSelectedChar(null)} />}
+    </div>
+  );
+};
+
 
 const SecretPanel = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 });
@@ -707,6 +943,7 @@ export default function MangaPanelApp() {
     switch (id) {
       case 'home': return <HomePage onNav={navigate} />;
       case 'about': return <AboutPage onNav={navigate} />;
+      case 'quotes': return <QuotesWallPage onNav={navigate} />;
       case 'projects': return <ProjectsPage onNav={navigate} />;
       case 'blog': return <BlogPage onNav={navigate} />;
       case 'contact': return <ContactPage />;
@@ -766,6 +1003,7 @@ export default function MangaPanelApp() {
         @keyframes sfx-pop { 0%{opacity:1;transform:scale(0.5) rotate(var(--r,-8deg));} 50%{opacity:1;transform:scale(1.2) rotate(var(--r,-8deg));} 100%{opacity:0;transform:scale(1.5) rotate(var(--r,-8deg)) translateY(-40px);} }
         @keyframes burst-expand { 0%{transform:scale(0);opacity:0.6;} 100%{transform:scale(2);opacity:0;} }
         @keyframes fade-in { from{opacity:0;} to{opacity:1;} }
+        @keyframes profile-pop { 0%{opacity:0;transform:scale(0.8) translateY(20px);} 100%{opacity:1;transform:scale(1) translateY(0);} }
         @keyframes ultra-shake { 0%,100%{transform:translate(0,0) rotate(0);} 20%{transform:translate(-3px,1px) rotate(-1deg);} 40%{transform:translate(2px,-2px) rotate(1deg);} 60%{transform:translate(-1px,2px) rotate(-0.5deg);} 80%{transform:translate(2px,-1px) rotate(0.5deg);} }
         @keyframes rainbow-bg { 0%{filter:hue-rotate(0deg);} 100%{filter:hue-rotate(360deg);} }
         @keyframes page-sfx-burst {
