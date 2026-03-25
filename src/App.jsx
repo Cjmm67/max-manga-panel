@@ -917,8 +917,207 @@ const CharacterProfileModal = ({ character, onClose }) => {
 /* ═══════════════════════════════════════
    ANIME QUOTES WALL PAGE
    ═══════════════════════════════════════ */
+const CHARACTER_EMOJIS = ['⚔️','🔥','❄️','⚡','💀','🌊','🌪️','💎','🗡️','🏹','✨','🌑','☀️','🐉','👁️','🦅','💚','💜','🖤','❤️','🧡','💛','💙','🤍','🥷','🧙','🏴‍☠️','🎭','🐺','🦊','🐍','🦁','🦇','👊','🔮','🌸','🍥','🎣','🥜','💪'];
+const CHARACTER_COLORS = [
+  { name: 'Blue', value: '#00B4FF' }, { name: 'Red', value: '#FF3B5C' }, { name: 'Orange', value: '#FF6D00' },
+  { name: 'Gold', value: '#FFB800' }, { name: 'Green', value: '#00E676' }, { name: 'Purple', value: '#7C4DFF' },
+  { name: 'Pink', value: '#FF80AB' }, { name: 'Cyan', value: '#00BCD4' }, { name: 'Crimson', value: '#DC143C' },
+  { name: 'Lime', value: '#CDDC39' }, { name: 'Teal', value: '#009688' }, { name: 'Indigo', value: '#3F51B5' },
+];
+
+const AddCharacterForm = ({ onAdd, onCancel }) => {
+  const [name, setName] = useState('');
+  const [series, setSeries] = useState('');
+  const [quote, setQuote] = useState('');
+  const [emoji, setEmoji] = useState('⚔️');
+  const [color, setColor] = useState('#00B4FF');
+  const [trait, setTrait] = useState('');
+  const [bio, setBio] = useState('');
+  const [charClass, setCharClass] = useState('Warrior');
+  const [rarity, setRarity] = useState('Legendary');
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [statHP, setStatHP] = useState(500);
+  const [statATK, setStatATK] = useState(500);
+  const [statDEF, setStatDEF] = useState(500);
+  const [statIQ, setStatIQ] = useState(500);
+  const [statSPD, setStatSPD] = useState(500);
+  const [statLCK, setStatLCK] = useState(500);
+
+  const isValid = name.trim() && series.trim() && quote.trim();
+
+  const handleSubmit = () => {
+    if (!isValid) return;
+    const accentBg = `linear-gradient(135deg, ${color}22, ${color}44)`;
+    onAdd({
+      id: `custom-${Date.now()}`, name: name.trim(), series: series.trim(),
+      quote: quote.trim(), color, accentBg, emoji,
+      title: trait || 'The Unknown', charClass, level: 50, rarity, xp: 50,
+      stats: { HP: statHP, ATK: statATK, DEF: statDEF, IQ: statIQ, SPD: statSPD, LCK: statLCK },
+      abilities: [{ icon: emoji, name: trait || 'Special Move' }],
+      trait: trait || 'Unknown', bio: bio || `A legendary figure from ${series.trim()}.`,
+    });
+  };
+
+  const inputStyle = { width: '100%', boxSizing: 'border-box', padding: '10px 14px', border: '2.5px solid var(--ink)', fontFamily: "'Nunito', sans-serif", fontSize: 14, background: 'var(--panel)', color: 'var(--ink)', outline: 'none', borderRadius: 2 };
+  const labelStyle = { fontFamily: "'Bangers', cursive", fontSize: 13, letterSpacing: 2, color: 'var(--grey)', display: 'block', marginBottom: 4, textTransform: 'uppercase' };
+
+  return (
+    <div style={{ border: '3px solid var(--ink)', overflow: 'hidden', marginBottom: 16 }}>
+      {/* Form header */}
+      <div style={{ background: 'var(--dark)', color: 'var(--panel)', padding: '20px 20px 14px', position: 'relative', overflow: 'hidden' }}>
+        <SpeedLinesRadial opacity={0.06} />
+        <SFX text="NEW!" rotation={8} size={18} color={COLORS.energy} top="6px" right="10px" />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(20px, 4vw, 28px)', letterSpacing: 3, textTransform: 'uppercase', color: COLORS.energy }}>ADD A NEW LEGEND</div>
+          <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 12, color: '#999', marginTop: 4 }}>Create your own hero for the Wall of Legends</div>
+        </div>
+      </div>
+
+      <div style={{ padding: 20, background: 'var(--panel)' }}>
+        {/* Row 1: Emoji + Name + Series */}
+        <div style={{ display: 'grid', gridTemplateColumns: '70px 1fr 1fr', gap: 12, marginBottom: 14 }}>
+          <div>
+            <label style={labelStyle}>ICON</label>
+            <div style={{ position: 'relative' }}>
+              <button onClick={() => setShowEmojiPicker(!showEmojiPicker)} style={{ width: '100%', height: 44, border: '2.5px solid var(--ink)', background: 'var(--panel)', fontSize: 28, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>{emoji}</button>
+              {showEmojiPicker && (
+                <div style={{ position: 'absolute', top: 50, left: 0, background: 'var(--panel)', border: '3px solid var(--ink)', padding: 8, display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 4, zIndex: 20, boxShadow: '4px 4px 0 rgba(0,0,0,0.1)', width: 280 }}>
+                  {CHARACTER_EMOJIS.map(e => (
+                    <button key={e} onClick={() => { setEmoji(e); setShowEmojiPicker(false); }} style={{ width: 30, height: 30, border: e === emoji ? `2px solid ${color}` : '1px solid transparent', background: e === emoji ? `${color}22` : 'transparent', borderRadius: 4, fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{e}</button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div>
+            <label style={labelStyle}>NAME</label>
+            <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Vegeta" style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>SERIES</label>
+            <input value={series} onChange={e => setSeries(e.target.value)} placeholder="e.g. Dragon Ball Z" style={inputStyle} />
+          </div>
+        </div>
+
+        {/* Row 2: Quote (full width) */}
+        <div style={{ marginBottom: 14 }}>
+          <label style={labelStyle}>QUOTE</label>
+          <input value={quote} onChange={e => setQuote(e.target.value)} placeholder="e.g. It's over 9000!" style={inputStyle} />
+        </div>
+
+        {/* Row 3: Trait + Color */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 14 }}>
+          <div>
+            <label style={labelStyle}>SPECIAL TRAIT</label>
+            <input value={trait} onChange={e => setTrait(e.target.value)} placeholder="e.g. Saiyan Pride" style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle}>COLOR</label>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              {CHARACTER_COLORS.map(c => (
+                <button key={c.value} onClick={() => setColor(c.value)} title={c.name} style={{
+                  width: 28, height: 28, borderRadius: 4, border: c.value === color ? '3px solid var(--ink)' : '2px solid transparent',
+                  background: c.value, cursor: 'pointer', boxShadow: c.value === color ? `0 0 8px ${c.value}66` : 'none',
+                  transition: 'all 0.15s',
+                }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Row 4: Class + Rarity */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 14 }}>
+          <div>
+            <label style={labelStyle}>CLASS</label>
+            <select value={charClass} onChange={e => setCharClass(e.target.value)} style={{ ...inputStyle, cursor: 'pointer' }}>
+              {CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+          <div>
+            <label style={labelStyle}>RARITY</label>
+            <select value={rarity} onChange={e => setRarity(e.target.value)} style={{ ...inputStyle, cursor: 'pointer' }}>
+              {RARITIES.map(r => <option key={r} value={r}>{r}</option>)}
+            </select>
+          </div>
+        </div>
+
+        {/* Row 5: Bio */}
+        <div style={{ marginBottom: 14 }}>
+          <label style={labelStyle}>LORE / BIO</label>
+          <textarea value={bio} onChange={e => setBio(e.target.value)} placeholder="Write the legend's backstory..." rows={2} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }} />
+        </div>
+
+        {/* Row 6: Stats sliders */}
+        <div style={{ marginBottom: 16 }}>
+          <label style={labelStyle}>COMBAT STATS</label>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginTop: 4 }}>
+            {[
+              { key: 'HP', val: statHP, set: setStatHP, icon: '❤️', barColor: '#e63946' },
+              { key: 'ATK', val: statATK, set: setStatATK, icon: '⚔️', barColor: '#f77f00' },
+              { key: 'DEF', val: statDEF, set: setStatDEF, icon: '🛡️', barColor: '#2a9d8f' },
+              { key: 'IQ', val: statIQ, set: setStatIQ, icon: '🧠', barColor: '#7b2cbf' },
+              { key: 'SPD', val: statSPD, set: setStatSPD, icon: '⚡', barColor: '#00b4d8' },
+              { key: 'LCK', val: statLCK, set: setStatLCK, icon: '🍀', barColor: '#f4a261' },
+            ].map(s => (
+              <div key={s.key} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>{s.icon}</span>
+                <span style={{ fontFamily: "'Bangers', cursive", fontSize: 12, width: 28, color: s.barColor }}>{s.key}</span>
+                <input type="range" min={1} max={999} value={s.val} onChange={e => s.set(+e.target.value)} style={{ flex: 1, accentColor: s.barColor, height: 6 }} />
+                <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, width: 30, textAlign: 'right', color: 'var(--grey)' }}>{s.val}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Preview chip */}
+        {isValid && (
+          <div style={{ border: `2px dashed ${color}44`, borderRadius: 8, padding: 12, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10, background: `${color}08` }}>
+            <span style={{ fontSize: 28 }}>{emoji}</span>
+            <div>
+              <div style={{ fontFamily: "'Bangers', cursive", fontSize: 16, color: 'var(--ink)', letterSpacing: 1 }}>{name}</div>
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 11, color, fontStyle: 'italic' }}>"{quote}"</div>
+            </div>
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={handleSubmit} disabled={!isValid} style={{
+            flex: 1, padding: 14, background: isValid ? COLORS.energy : '#ccc', color: isValid ? '#111' : '#888',
+            fontFamily: "'Bangers', cursive", fontSize: 18, letterSpacing: 3, textTransform: 'uppercase',
+            border: '3px solid var(--ink)', cursor: isValid ? 'pointer' : 'not-allowed',
+            boxShadow: isValid ? '4px 4px 0 var(--ink)' : 'none', transition: 'all 0.15s',
+          }}
+            onMouseEnter={e => { if (isValid) { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '6px 6px 0 var(--ink)'; } }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = isValid ? '4px 4px 0 var(--ink)' : 'none'; }}
+          >ADD TO WALL &#8594;</button>
+          <button onClick={onCancel} style={{
+            padding: '14px 20px', background: 'var(--panel)', color: 'var(--grey)',
+            fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 2, textTransform: 'uppercase',
+            border: '3px solid var(--ink)', cursor: 'pointer',
+          }}>CANCEL</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const QuotesWallPage = ({ onNav }) => {
   const [selectedChar, setSelectedChar] = useState(null);
+  const [customChars, setCustomChars] = useState([]);
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  const allCharacters = [...ANIME_CHARACTERS, ...customChars];
+
+  const handleAddChar = (newChar) => {
+    setCustomChars(prev => [...prev, newChar]);
+    setShowAddForm(false);
+  };
+
+  const handleDeleteCustom = (id) => {
+    setCustomChars(prev => prev.filter(c => c.id !== id));
+  };
+
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '12px', background: 'var(--gutter)' }}>
       <ScrollReveal><div style={{ fontFamily: "'Bangers', cursive", fontSize: 14, letterSpacing: 3, color: '#999', textAlign: 'center', marginBottom: 4 }}>CHAPTER 02</div></ScrollReveal>
@@ -933,15 +1132,15 @@ const QuotesWallPage = ({ onNav }) => {
           <SFX text="POWER!" rotation={10} size={20} color={COLORS.gold} bottom="8px" right="5%" />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(20px, 5vw, 32px)', letterSpacing: 3, textTransform: 'uppercase', color: COLORS.energy }}>EVERY HERO HAS A BATTLE CRY</div>
-            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 13, color: '#999', marginTop: 8 }}>These are the quotes Max lives by.</div>
+            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 13, color: '#999', marginTop: 8 }}>These are the quotes Max lives by. <span style={{ color: COLORS.energy }}>Add your own legends below!</span></div>
           </div>
         </div>
       </ScrollReveal>
 
       {/* Character quote cards grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12, marginBottom: 16 }}>
-        {ANIME_CHARACTERS.map((ch, i) => (
-          <ScrollReveal key={ch.id} direction={i % 2 === 0 ? 'left' : 'right'} delay={i * 80}>
+        {allCharacters.map((ch, i) => (
+          <ScrollReveal key={ch.id} direction={i % 2 === 0 ? 'left' : 'right'} delay={Math.min(i, 8) * 80}>
             <div
               onClick={() => setSelectedChar(ch)}
               style={{
@@ -954,6 +1153,13 @@ const QuotesWallPage = ({ onNav }) => {
             >
               {/* Color bar top */}
               <div style={{ height: 5, background: ch.color }} />
+              {/* Custom badge */}
+              {ch.id.startsWith('custom-') && (
+                <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 2, display: 'flex', gap: 4 }}>
+                  <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: COLORS.energy, background: `${COLORS.energy}15`, border: `1px solid ${COLORS.energy}44`, padding: '1px 6px', borderRadius: 4, letterSpacing: 1 }}>CUSTOM</div>
+                  <button onClick={e => { e.stopPropagation(); handleDeleteCustom(ch.id); }} style={{ fontFamily: "'Courier Prime', monospace", fontSize: 9, color: '#e63946', background: 'rgba(230,57,70,0.1)', border: '1px solid rgba(230,57,70,0.3)', padding: '1px 6px', borderRadius: 4, cursor: 'pointer', letterSpacing: 1 }}>✕</button>
+                </div>
+              )}
               {/* Emoji + name header */}
               <div style={{ padding: '16px 16px 8px', display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div style={{ fontSize: 36, flexShrink: 0 }}>{ch.emoji}</div>
@@ -980,9 +1186,27 @@ const QuotesWallPage = ({ onNav }) => {
         ))}
       </div>
 
+      {/* Add Character section */}
+      {showAddForm ? (
+        <AddCharacterForm onAdd={handleAddChar} onCancel={() => setShowAddForm(false)} />
+      ) : (
+        <ScrollReveal>
+          <div onClick={() => setShowAddForm(true)} style={{
+            border: '3px dashed var(--ink)', background: 'var(--panel)', padding: '30px 24px', textAlign: 'center',
+            cursor: 'pointer', marginBottom: 16, transition: 'all 0.2s', position: 'relative', overflow: 'hidden',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = COLORS.energy; e.currentTarget.style.background = `${COLORS.energy}08`; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--ink)'; e.currentTarget.style.background = 'var(--panel)'; }}
+          >
+            <div style={{ fontFamily: "'Bangers', cursive", fontSize: 'clamp(20px, 4vw, 28px)', color: COLORS.energy, letterSpacing: 3, textTransform: 'uppercase' }}>+ ADD YOUR OWN LEGEND</div>
+            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: 13, color: 'var(--grey)', marginTop: 6 }}>Add any anime character and their iconic quote to the wall</div>
+          </div>
+        </ScrollReveal>
+      )}
+
       {/* Bottom CTA */}
       <ScrollReveal><div style={{ border: '3px solid var(--ink)', background: 'var(--panel)', padding: '30px 24px', textAlign: 'center' }}>
-        <div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 8 }}>MORE LEGENDS COMING SOON...</div>
+        <div style={{ fontFamily: "'Courier Prime', monospace", fontStyle: 'italic', fontSize: 14, color: 'var(--grey)', marginBottom: 8 }}>{allCharacters.length} LEGENDS ON THE WALL{customChars.length > 0 ? ` (${customChars.length} CUSTOM)` : ''}...</div>
         <div onClick={() => onNav('projects')} style={{ fontFamily: "'Bangers', cursive", fontSize: 20, letterSpacing: 2, color: COLORS.gold, cursor: 'pointer', textTransform: 'uppercase' }}>NEXT: THE STORY ARCS &#8594;</div>
       </div></ScrollReveal>
 
